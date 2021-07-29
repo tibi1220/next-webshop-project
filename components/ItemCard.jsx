@@ -19,7 +19,7 @@ const ItemCard = ({ item }) => {
             count={item.reviews.length}
           />
         </div>
-        <div className="h-full md:w-4/6 inline-flex flex-col justify-between">
+        <div className="h-full md:w-4/6 inline-flex flex-col justify-between md:my-auto md:h-full">
           <div className="w-full mx-auto px-2 md:pl-4 py-4 md:py-0 inline-flex justify-between">
             <div>
               <Link href={`/item/${item.id}`}>

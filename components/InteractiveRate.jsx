@@ -5,21 +5,21 @@ const InteractiveRate = () => {
   const [rating, setRating] = useState(0);
   const [stars, setStars] = useState([]);
 
-  const generateStars = () => {
-    let retArr = [];
-
-    for (let i = 1; i <= 5; i++) {
-      retArr.push(
-        <span key={i} onClick={() => setRating(i)} className="cursor-pointer">
-          {i <= rating ? Inline : Outline}
-        </span>
-      );
-    }
-
-    return retArr;
-  };
-
   useEffect(() => {
+    const generateStars = () => {
+      let retArr = [];
+
+      for (let i = 1; i <= 5; i++) {
+        retArr.push(
+          <span key={i} onClick={() => setRating(i)} className="cursor-pointer">
+            {i <= rating ? Inline : Outline}
+          </span>
+        );
+      }
+
+      return retArr;
+    };
+
     setStars(generateStars(rating));
   }, [rating]);
 

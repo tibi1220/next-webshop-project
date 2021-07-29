@@ -4,7 +4,7 @@ import ItemCard from '../../components/ItemCard';
 import { useEffect, useState } from 'react';
 
 const SearchCustom = ({ input, result }) => {
-  const [orderBy, setOrderBy] = useState(0);
+  const [orderBy, setOrderBy] = useState(4);
 
   const alphabeticalAsc = (a, b) => a.name.localeCompare(b.name);
   const alphabeticalDesc = (a, b) => -a.name.localeCompare(b.name);
@@ -38,7 +38,7 @@ const SearchCustom = ({ input, result }) => {
                 <select
                   name="order"
                   id="order-select"
-                  defaultValue="name_asc"
+                  defaultValue="4"
                   onChange={e => setOrderBy(parseInt(e.target.value))}
                 >
                   <option value="0">Name Ascending</option>

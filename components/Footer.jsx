@@ -3,9 +3,9 @@ import Link from 'next/link';
 const Footer = () => {
   return (
     <div className="bg-gray-800 text-green-100">
-      <div className=" container mx-auto">
+      <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-around text-center">
-          <div className="w-4/12 m-auto">
+          <div className="p-4 m-auto">
             <h3 className="text-xl border-b-2 border-gray-500 uppercase pt-4">
               Developer
             </h3>
@@ -31,13 +31,13 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="w-4/12 m-auto">
+          <div className="p-4 m-auto">
             <h3 className="text-xl border-b-2 border-gray-500 uppercase pt-4">
               NXT
             </h3>
             <ul className="text-gray-500">
               <li className="py-0.5">
-                <Link href="privacy-policy">
+                <Link href="/privacy-policy">
                   <a>Privacy Policy</a>
                 </Link>
               </li>
@@ -54,7 +54,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div>
+        <div className="p-4">
           <p className="text-xl font-bold font-mono] text-center p-4">
             Copyright © @tibi1220. All rights reserved.
           </p>
