@@ -1,4 +1,4 @@
-import ItemRating from './ItemRating';
+import StarRating from './stars/StarRating';
 
 const ReviewCard = ({ review }) => {
   return (
@@ -7,8 +7,8 @@ const ReviewCard = ({ review }) => {
         <div>
           <span className="text-xl">{review.name}</span>
         </div>
-        <div>
-          <ItemRating rating={review.stars} count={undefined} />
+        <div className="pr-1">
+          <StarRating rating={review.stars} count={undefined} />
         </div>
       </div>
       <div className="m-1 p-1 pt-3 text-justify">

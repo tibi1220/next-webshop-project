@@ -25,6 +25,8 @@ module.exports = {
       transform: ['hover', 'focus'],
       ringColor: ['hover', 'focus'],
       borderWidth: ['hover', 'focus'],
+      backgroundColor: ['active'],
+      textColor: ['active'],
     },
   },
   plugins: [],

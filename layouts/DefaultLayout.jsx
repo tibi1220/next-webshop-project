@@ -1,10 +1,14 @@
 import Head from 'next/head';
-import Footer from './Footer';
-import Navbar from './Navbar';
+import Footer from '../components/essential/Footer';
+import Navbar from '../components/essential/Navbar';
+import SearchContext from '../context/SearchContext';
+import { useState } from 'react';
 
 const DefaultLayout = ({ children, title, input }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
-    <>
+    <SearchContext.Provider value={{ searchQuery, setSearchQuery }}>
       <Head>
         <meta charSet="UTF-8" />
         <meta
@@ -16,7 +20,7 @@ const DefaultLayout = ({ children, title, input }) => {
       <Navbar input={input} />
       {children}
       <Footer />
-    </>
+    </SearchContext.Provider>
   );
 };
 

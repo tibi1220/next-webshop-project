@@ -1,7 +1,5 @@
-import DefaultLayout from '../components/DefaultLayout';
-
 const About = () => {
-  return <DefaultLayout>About To Be Done</DefaultLayout>;
+  return <>About To Be Done</>;
 };
 
 export default About;

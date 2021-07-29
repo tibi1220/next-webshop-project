@@ -1,27 +1,32 @@
 import prisma from '../../lib/prisma';
-import DefaultLayout from '../../components/DefaultLayout';
 import ItemCard from '../../components/ItemCard';
-import { useEffect, useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import SearchContext from '../../context/SearchContext';
+
+const alphabeticalAsc = (a, b) => a.name.localeCompare(b.name);
+const alphabeticalDesc = (a, b) => -a.name.localeCompare(b.name);
+const priceAsc = (a, b) => a.price - b.price;
+const priceDesc = (a, b) => b.price - a.price;
+const mostPopular = (a, b) => b.reviews.length - a.reviews.length;
+
+const callbacks = [
+  alphabeticalAsc,
+  alphabeticalDesc,
+  priceAsc,
+  priceDesc,
+  mostPopular,
+];
 
 const SearchCustom = ({ input, result }) => {
   const [orderBy, setOrderBy] = useState(4);
+  const { setSearchQuery } = useContext(SearchContext);
 
-  const alphabeticalAsc = (a, b) => a.name.localeCompare(b.name);
-  const alphabeticalDesc = (a, b) => -a.name.localeCompare(b.name);
-  const priceAsc = (a, b) => a.price - b.price;
-  const priceDesc = (a, b) => b.price - a.price;
-  const mostPopular = (a, b) => b.reviews.length - a.reviews.length;
-
-  const callbacks = [
-    alphabeticalAsc,
-    alphabeticalDesc,
-    priceAsc,
-    priceDesc,
-    mostPopular,
-  ];
+  useEffect(() => {
+    setSearchQuery(input);
+  }, [setSearchQuery, input]);
 
   return (
-    <DefaultLayout input={input}>
+    <>
       <div className="bg-gray-100">
         <div className="container mx-auto text-center pt-12 text-5xl 2xl:text-6xl font-mono text-gray-800">
           <h1>Search results for &quot;{input}&quot;...</h1>
@@ -61,7 +66,7 @@ const SearchCustom = ({ input, result }) => {
           </div>
         </div>
       </div>
-    </DefaultLayout>
+    </>
   );
 };
 

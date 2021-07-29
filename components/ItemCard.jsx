@@ -1,23 +1,26 @@
-import ItemRating from './ItemRating';
 import ItemIcon from './ItemIcon';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import StarRating from './stars/StarRating';
+import StarDetailed from './stars/StarDetailed';
+import { useMemo, memo } from 'react';
 
 const ItemCard = ({ item }) => {
   const router = useRouter();
+  const avg = useMemo(
+    () => item.reviews.reduce((a, b) => a + b.stars, 0) / item.reviews.length,
+    [item]
+  );
+
+  console.log('re');
 
   return (
     <>
       <div className="mx-auto p-4 bg-gray-100 w-full rounded-xl shadow-inner inline-flex flex-col md:flex-row justify-between md:divide-x-2 divide-y-2 md:divide-y-0 divide-gray-800">
-        <div className="h-44 my-4 md:my-auto m-auto">
+        <div className="h-44 my-4 md:my-auto m-auto flex flex-col">
           <ItemIcon imageId={item.imageId} />
-          <ItemRating
-            rating={
-              item.reviews.reduce((a, b) => a + b.stars, 0) /
-              item.reviews.length
-            }
-            count={item.reviews.length}
-          />
+          <StarRating rating={avg} />
+          <StarDetailed rating={avg} count={item.reviews.length} />
         </div>
         <div className="h-full md:w-4/6 inline-flex flex-col justify-between md:my-auto md:h-full">
           <div className="w-full mx-auto px-2 md:pl-4 py-4 md:py-0 inline-flex justify-between">
@@ -54,4 +57,4 @@ const ItemCard = ({ item }) => {
   );
 };
 
-export default ItemCard;
+export default memo(ItemCard);

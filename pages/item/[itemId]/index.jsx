@@ -1,19 +1,20 @@
-import DefaultLayout from '../../../components/DefaultLayout';
 import ItemIcon from '../../../components/ItemIcon';
-import ItemRating from '../../../components/ItemRating';
 import prisma from '../../../lib/prisma';
 import ReviewCard from '../../../components/ReviewCard';
 import Link from 'next/link';
+import StarRating from '../../../components/stars/StarRating';
+import StarDetailed from '../../../components/stars/StarDetailed';
 
 const ItemPage = ({ input, result }) => {
   return (
-    <DefaultLayout>
+    <>
       <div className="container mx-auto py-4 md:py-10">
         <div className="bg-gray-100 shadow-inner p-4 md:px-6 rounded-xl m-2 mx-4 flex-row divide-y-2 md:divide-y-0 divide-gray-800">
           <div className="flex flex-col md:flex-row md:divide-x-2 divide-y-2 md:divide-y-0 divide-gray-800">
-            <div className="h-48 my-4 m-auto">
+            <div className="my-4 m-auto flex flex-col">
               <ItemIcon imageId={result.imageId} />
-              <ItemRating
+              <StarRating rating={result._avg.stars} />
+              <StarDetailed
                 rating={result._avg.stars}
                 count={result.reviews.length}
               />
@@ -60,7 +61,7 @@ const ItemPage = ({ input, result }) => {
           </div>
         </div>
       </div>
-    </DefaultLayout>
+    </>
   );
 };
 

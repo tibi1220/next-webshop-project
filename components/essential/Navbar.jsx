@@ -1,32 +1,32 @@
 import Link from 'next/link';
 import { SearchIcon } from '@heroicons/react/outline';
-import { useState } from 'react';
+import { useContext } from 'react';
 import { useRouter } from 'next/router';
+import SearchContext from '../../context/SearchContext';
 
-const Navbar = ({ input }) => {
+const Navbar = () => {
+  const { searchQuery, setSearchQuery } = useContext(SearchContext);
   const router = useRouter();
-
-  const [searchFor, setSearcFor] = useState(input || '');
 
   const handleSearchSubmit = e => {
     e.preventDefault();
-    if (!searchFor) return;
-    router.push(`/search/${searchFor}`);
+    if (!searchQuery) return;
+    router.push(`/search/${searchQuery}`);
   };
 
   const handleChange = e => {
-    setSearcFor(e.target.value);
+    setSearchQuery(e.target.value);
   };
 
   return (
     <div className="bg-gray-800">
       <nav
-        className="font-mono grid grid-cols-4 md:grid-cols-8 gap-4  h-32 md:h-16 place-content-around p-4  text-green-100 container mx-auto"
+        className="font-mono grid grid-cols-4 md:grid-cols-8 h-32 md:h-16 p-4 place-content-around text-green-100 container mx-auto items-center"
         role="navigation"
       >
         <div className="col-span-1 text-3xl px-2 my-auto ">
           <Link href="/">
-            <a className="hover:text-green-300 transition duration-500 ease-in-out">
+            <a className="hover:text-green-300 transition duration-200 ease-in-out active:text-red-300">
               NXT
             </a>
           </Link>
@@ -34,17 +34,17 @@ const Navbar = ({ input }) => {
         <form
           action=""
           onSubmit={handleSearchSubmit}
-          className="col-span-4 justify-self-auto place-self-center inline-flex md:justify-center justify-around gap-4 row-start-2 md:row-start-1 col-start-1 md:col-start-2 my-auto px-2"
+          className="col-span-4 justify-self-auto place-self-center inline-flex md:justify-center justify-around row-start-2 md:row-start-1 col-start-1 md:col-start-2 my-auto sm:space-x-4"
         >
           <input
-            value={searchFor}
+            value={searchQuery}
             onChange={handleChange}
             className="flex-grow p-2 rounded-lg ring-2 ring-green-100 text-gray-800 focus:outline-none transition duration-500 ease-in-out focus:ring-4 hover:ring-4"
             placeholder="Search for items..."
           />
           <button
             type="submit"
-            className="ml-2 w-auto rounded-lg ring-2 ring-green-100 p-2 bg-green-100 transition duration-500 ease-in-out hover:ring-4"
+            className="ml-2 w-auto rounded-lg sm:ring-2 ring-green-100 p-2 bg-green-100 active:bg-green-300 transition duration-500 ease-in-out sm:hover:ring-4"
           >
             <SearchIcon className="w-6 h-6 text-gray-800" />
           </button>
@@ -56,12 +56,12 @@ const Navbar = ({ input }) => {
             </a>
           </Link> */}
           <Link href="/add-listing">
-            <a className="md:mx-3 mx-2 hover:text-green-300 transition duration-500 ease-in-out">
+            <a className="md:mx-3 mx-2 hover:text-green-300 transition duration-200 ease-in-out active:text-red-300">
               Upload
             </a>
           </Link>
           <Link href="/profile">
-            <a className="md:mx-3 mx-2 hover:text-green-300 transition duration-500 ease-in-out">
+            <a className="md:mx-3 mx-2 hover:text-green-300 transition duration-200 ease-in-out active:text-red-300">
               Profile
             </a>
           </Link>
